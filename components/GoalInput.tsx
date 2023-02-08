@@ -17,6 +17,7 @@ function GoalInput({ onAddGoal }): JSX.Element {
       <TextInput
         style={styles.textInput}
         placeholder="Your course goal!"
+        value={enteredGoal}
         onChangeText={goalInputHandler}
       />
       <Button title="Add Goal" onPress={onAddGoalHandler} />

@@ -1,12 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { courseGoals } from '../../types/appTypes';
 
-function GoalItem(props: courseGoals): JSX.Element {
+function GoalItem(props: {
+  onDelete: (arg0: string) => void;
+  id: string;
+  value: string;
+}): JSX.Element {
+  function deleteHandler(this: any, id: string) {
+    props.onDelete(id);
+  }
+
   return (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{props.value}</Text>
-    </View>
+    <Pressable onPress={deleteHandler.bind(this, props.id)}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalText}>{props.value}</Text>
+      </View>
+    </Pressable>
   );
 }
 

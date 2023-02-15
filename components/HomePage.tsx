@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, Button, StatusBar } from 'react-native';
+import { Button as PaperButton } from 'react-native-paper';
 import GoalInput from '../components/GoalInput';
 import GoalItem from '../components/Section/GoalItem';
 import { courseGoalsList } from '../types/appTypes';
 
 
-function HomePage(): JSX.Element {
+function HomePage({ navigation }): JSX.Element {
   const [courseGoals, setCourseGoals] = React.useState<courseGoalsList>([]);
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
 
@@ -34,7 +35,6 @@ function HomePage(): JSX.Element {
 
   return (
     <>
-      <StatusBar barStyle="light-content" />
       <View style={styles.appContainer}>
         <Button title="Add New Goal" onPress={handleModal} />
         <GoalInput
@@ -51,6 +51,12 @@ function HomePage(): JSX.Element {
               value={itemData.item.value}
             />
           )}
+        />
+        <PaperButton
+          mode="outlined"
+          buttonColor='white'
+          children="Go to Test"
+          onPress={() => navigation.navigate('Test')}
         />
       </View>
     </>
@@ -69,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default React.memo(HomePage);

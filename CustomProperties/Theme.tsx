@@ -1,10 +1,9 @@
 import React from 'react';
-import { DefaultTheme, configureFonts } from 'react-native-paper';
+import { MD3LightTheme as DefaultTheme, configureFonts } from 'react-native-paper';
 import fontConfig from './Fonts';
 
 const theme = {
   ...DefaultTheme,
-  // fonts: configureFonts(fontConfig),
   roundness: 30,
   colors: {
     ...DefaultTheme.colors,
@@ -13,7 +12,8 @@ const theme = {
     favorite: "#BADA55",
     cancelButton: "#a4c639",
     iconColor: "#808080",
-  }
+  },
+  fonts: configureFonts({ config: fontConfig }),
 }
 
 export default theme;

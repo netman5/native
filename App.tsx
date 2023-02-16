@@ -10,6 +10,29 @@ import { Button } from 'react-native-paper';
 
 
 const Stack = createNativeStackNavigator();
+const Drawer = createNativeStackNavigator();
+
+function Root() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home">
+        {(props) => <HomePage {...props} />}
+      </Drawer.Screen>
+
+      <Drawer.Screen
+        name="Details"
+        component={Details}
+        initialParams={{ itemId: 42 }}
+        options={({ route, navigation }) => ({
+          headerTitle: route.params?.name,
+          headerRight: () => (
+            <Button children="Update Count" />
+          ),
+        })}
+      />
+    </Drawer.Navigator>
+  )
+}
 
 
 function App(): JSX.Element {
@@ -26,27 +49,20 @@ function App(): JSX.Element {
           },
         }}
       >
-        <Stack.Screen
+        <Stack.Screen name="Root" component={Root}
+          options={{ headerShown: false }}
+        />
+        {/* <Stack.Screen
           name="Home"
         // options={{ headerTitle: props => <LogoTitle {...props} /> }}
         >
           {props => <HomePage {...props} />}
-        </Stack.Screen>
+        </Stack.Screen> */}
         <Stack.Screen
           name="Test"
           component={TestComponent}
-          options={({ route }) => ({ title: route.params?.name })}
-        />
-        <Stack.Screen
-          name="Details"
-          component={Details}
-          initialParams={{ itemId: 42 }}
-          options={({ route, navigation }) => ({
-            headerTitle: route.params?.name,
-            headerRight: () => (
-              <Button children="Update Count" />
-            ),
-          })}
+          // options={({ route }) => ({ title: route.params?.name })}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

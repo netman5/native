@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { Button, Text, useTheme } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
+import Messages from '../Screens/Tabs/Messages';
+import Feeds from '../Screens/Tabs/Feeds';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Tab = createNativeStackNavigator();
 
 const TestComponent = ({ navigation }) => {
   const { colors } = useTheme();
   return (
     <View style={styles.testContainer}>
+      <Tab.Navigator>
+        <Tab.Screen name="Feed" component={Feeds} />
+        <Tab.Screen name="Messages" component={Messages} />
+      </Tab.Navigator>
       <Text style={styles.testContainer}>
         Test Component
       </Text>
